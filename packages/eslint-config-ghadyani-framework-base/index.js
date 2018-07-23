@@ -9,6 +9,9 @@ module.exports = {
 		ecmaVersion: 2018,
 		sourceType: 'module',
 	},
+	plugins: [
+		'import',
+	],
 	rules: {
 		'comma-dangle': [
 			'warn',
