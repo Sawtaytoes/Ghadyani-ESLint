@@ -1,11 +1,11 @@
 {
-  "name": "@ghadyani-framework/eslint-config-ghadyani-framework-web",
+  "name": "@ghadyani-framework/eslint-config-web",
   "version": "0.0.0",
   "description": "ESLint config for Ghadyani Framework packages designed for web projects.",
   "license": "MITNFA",
   "peerDependencies": {
     "babel-eslint": "^8.2.6",
-    "@ghadyani-framework/eslint-config-ghadyani-framework-base": "^0.0.0"
+    "@ghadyani-framework/eslint-config-base": "^0.0.0"
     "eslint-plugin-compat": "^2.5.1",
     "react": "^16.4.1"
   }

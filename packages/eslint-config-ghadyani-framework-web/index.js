@@ -3,8 +3,8 @@ module.exports = {
 		browser: true,
 	},
 	extends: [
-		'ghadyani-framework-base',
 		'plugin:react/recommended',
+		'@ghadyani-framework/base',
 	],
 	parser: 'babel-eslint',
 	parserOptions: {
