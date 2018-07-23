@@ -1,9 +1,9 @@
 {
-  "name": "@ghadyani-framework/eslint-config-ghadyani-framework-node",
-  "version": "0.0.1",
+  "name": "@ghadyani-framework/eslint-config-node",
+  "version": "0.0.2",
   "description": "ESLint config for Ghadyani Framework packages designed for Node.js projects.",
   "license": "MITNFA",
   "peerDependencies": {
-    "@ghadyani-framework/eslint-config-ghadyani-framework-base": "^0.0.0"
+    "@ghadyani-framework/eslint-config-base": "^0.0.0"
   }
 }
