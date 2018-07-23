@@ -14,6 +14,7 @@ module.exports = {
 			'warn',
 			'always-multiline',
 		],
+		'import/no-unresolved': 'warn',
 		'no-console': 'off',
 		'no-unused-vars': 'warn',
 		'semi': [
