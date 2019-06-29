@@ -15,6 +15,5 @@
     "babel-eslint": "*",
     "eslint-plugin-compat": "*",
     "react": "*"
-  },
-  "gitHead": "9f7862fba6d8c6b70cdd71068f6765753fabfd41"
+  }
 }

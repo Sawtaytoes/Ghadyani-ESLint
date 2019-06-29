@@ -5,6 +5,5 @@
   "license": "MITNFA",
   "dependencies": {
     "@ghadyani-framework/eslint-config-base": "^0.0.3"
-  },
-  "gitHead": "9f7862fba6d8c6b70cdd71068f6765753fabfd41"
+  }
 }
