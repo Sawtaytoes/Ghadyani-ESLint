@@ -8,5 +8,6 @@
   },
   "dependencies": {
     "@ghadyani-eslint/eslint-config-core": "^1.1.2"
-  }
+  },
+  "gitHead": "167bb222b1c2eedf2fa13c6afae53f92ea2a738a"
 }
