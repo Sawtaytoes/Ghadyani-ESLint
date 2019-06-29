@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Base ESLint config for Ghadyani Framework packages.",
   "license": "MITNFA",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "eslint": "^5.2.0",
     "eslint-import-resolver-alias": "^1.1.0",
