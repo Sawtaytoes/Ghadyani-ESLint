@@ -1,13 +1,13 @@
 {
   "name": "@ghadyani-eslint/eslint-config-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ESLint config for Ghadyani Framework packages designed for web projects.",
   "license": "MITNFA",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@ghadyani-eslint/eslint-config-base": "^1.0.0"
+    "@ghadyani-eslint/eslint-config-base": "^1.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
