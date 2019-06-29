@@ -1,0 +1,1 @@
+ghadyani-eslint-configs
