@@ -1,6 +1,5 @@
 {
   "name": "@ghadyani-eslint/eslint-config-node",
-  "version": "1.1.1",
   "description": "ESLint config for Ghadyani Framework packages designed for Node.js projects.",
   "license": "MITNFA",
   "publishConfig": {
