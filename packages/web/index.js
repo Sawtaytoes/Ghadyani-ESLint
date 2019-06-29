@@ -4,7 +4,7 @@ module.exports = {
 	},
 	extends: [
 		'plugin:react/recommended',
-		'@ghadyani-framework/base',
+		'@ghadyani-eslint/core',
 	],
 	parser: 'babel-eslint',
 	parserOptions: {

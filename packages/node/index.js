@@ -4,6 +4,6 @@ module.exports = {
 		node: true,
 	},
 	extends: [
-		'@ghadyani-framework/base',
+		'@ghadyani-eslint/core',
 	],
 }
