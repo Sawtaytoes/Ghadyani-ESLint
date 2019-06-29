@@ -6,6 +6,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@ghadyani-eslint/eslint-config-base": "^1.1.0"
+    "@ghadyani-eslint/eslint-config-core": "^1.1.2"
   }
 }
