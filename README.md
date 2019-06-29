@@ -1,1 +1,1 @@
-ghadyani-eslint-configs
+ghadyani-eslint
