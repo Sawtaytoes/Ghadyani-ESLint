@@ -10,13 +10,13 @@
     "@ghadyani-eslint/eslint-config-base": "^1.0.1"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^10.0.2",
     "eslint-plugin-compat": "^2.5.1",
     "react": "^16.4.1"
   },
   "peerDependencies": {
-    "babel-eslint": "*",
-    "eslint-plugin-compat": "*",
-    "react": "*"
+    "babel-eslint": ">10",
+    "eslint-plugin-compat": ">2",
+    "react": ">16"
   }
 }
