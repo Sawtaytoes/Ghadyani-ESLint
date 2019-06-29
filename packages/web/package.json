@@ -7,7 +7,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ghadyani-framework/eslint-config-base": "^0.0.3"
+    "@ghadyani-eslint/eslint-config-base": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
