@@ -1,6 +1,6 @@
 {
   "name": "@ghadyani-eslint/eslint-config-base",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Base ESLint config for Ghadyani Framework packages.",
   "license": "MITNFA",
   "dependencies": {

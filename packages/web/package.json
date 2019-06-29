@@ -1,6 +1,6 @@
 {
   "name": "@ghadyani-eslint/eslint-config-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "ESLint config for Ghadyani Framework packages designed for web projects.",
   "license": "MITNFA",
   "dependencies": {
