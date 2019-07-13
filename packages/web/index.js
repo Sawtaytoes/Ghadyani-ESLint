@@ -34,4 +34,9 @@ module.exports = {
 		'compat',
 		'react',
 	],
+	settings: {
+		react: {
+			version: 'detect',
+		},
+	},
 }
