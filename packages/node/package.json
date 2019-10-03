@@ -1,13 +1,13 @@
 {
   "name": "@ghadyani-eslint/eslint-config-node",
-  "version": "1.1.4-alpha.0",
+  "version": "1.1.5",
   "description": "ESLint config for Ghadyani Framework packages designed for Node.js projects.",
   "license": "MITNFA",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@ghadyani-eslint/eslint-config-core": "^1.1.2"
+    "@ghadyani-eslint/eslint-config-core": "^1.1.5"
   },
   "gitHead": "167bb222b1c2eedf2fa13c6afae53f92ea2a738a"
 }
