@@ -6,6 +6,11 @@ module.exports = {
 		'plugin:react/recommended',
 		'@ghadyani-eslint/core',
 	],
+	globals: {
+		document: 'readonly',
+		navigator: 'readonly',
+		window: 'readonly',
+	},
 	parser: 'babel-eslint',
 	parserOptions: {
 		'ecmaFeatures': {
