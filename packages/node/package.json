@@ -3,11 +3,21 @@
   "version": "1.1.7",
   "description": "ESLint config for Ghadyani Framework packages designed for Node.js projects.",
   "license": "MITNFA",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@ghadyani-eslint/eslint-config-core": "^1.1.7"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "peerDependencies": {
+    "eslint": ">=3 <7",
+    "eslint-import-resolver-alias": "^1",
+    "eslint-plugin-import": "^2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
