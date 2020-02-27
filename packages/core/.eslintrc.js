@@ -68,7 +68,10 @@ module.exports = {
 		],
 		'no-console': 'off',
 		'no-lonely-if': 'warn',
-		'no-multi-spaces': 'warn',
+		'no-multi-spaces': [
+			'warn',
+			{ exceptions: {} },
+		],
 		'no-multiple-empty-lines': [
 			'warn',
 			{
@@ -80,7 +83,7 @@ module.exports = {
 		'no-trailing-spaces': 'warn',
 		'no-unneeded-ternary': [
 			'warn',
-			{ "defaultAssignment": false },
+			{ 'defaultAssignment': false },
 		],
 		'no-unused-vars': 'warn',
 		'no-useless-computed-key': [
@@ -194,11 +197,11 @@ module.exports = {
 		],
 		'space-in-parens': 'warn',
 		'space-infix-ops': 'warn',
-		"space-unary-ops": [
+		'space-unary-ops': [
 			'warn',
 			{
-				"words": true,
-				"nonwords": true,
+				'words': true,
+				'nonwords': true,
 			},
 		],
 		'spaced-comment': 'warn',
