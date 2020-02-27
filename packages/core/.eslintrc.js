@@ -49,6 +49,26 @@ module.exports = {
 		'key-spacing': 'warn',
 		'keyword-spacing': 'warn',
 		'import/no-unresolved': 'warn',
+		// 'import/order': [
+		// 	'warn',
+		// 	{
+		// 		// alphabetize: {
+		// 		// 	caseInsensitive: true,
+		// 		// 	order: 'asc',
+		// 		// },
+		// 		groups: [
+		// 			[
+		// 				'builtin',
+		// 				'external',
+		// 			],
+		// 			[
+		// 				'index',
+		// 				'parent',
+		// 				'sibling',
+		// 			],
+		// 		],
+		// 	},
+		// ],
 		'indent': [
 			'error',
 			'tab',
@@ -169,7 +189,18 @@ module.exports = {
 			'error',
 			'first',
 		],
-		'sort-imports': [
+		// 'sort-imports': [
+		// 	'warn',
+		// 	{
+		// 		ignoreCase: true,
+		// 		memberSyntaxSortOrder: [
+		// 			'single',
+		// 			'all',
+		// 			'multiple',
+		// 			'none',
+		// 		],
+		// 	},
+		// ],
 		'sort-destructure-keys/sort-destructure-keys': [
 			'warn',
 			{ caseSensitive: false },
