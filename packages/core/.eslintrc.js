@@ -11,6 +11,7 @@ module.exports = {
 	},
 	plugins: [
 		'import',
+		'sort-destructure-keys',
 	],
 	rules: {
 		'array-bracket-newline': [
@@ -166,16 +167,9 @@ module.exports = {
 			'first',
 		],
 		'sort-imports': [
+		'sort-destructure-keys/sort-destructure-keys': [
 			'warn',
-			{
-				ignoreCase: true,
-				memberSyntaxSortOrder: [
-					'single',
-					'all',
-					'multiple',
-					'none',
-				],
-			},
+			{ caseSensitive: false },
 		],
 		'sort-keys': [
 			'warn',
