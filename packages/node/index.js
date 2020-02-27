@@ -1,9 +1,1 @@
-module.exports = {
-	env: {
-		commonjs: true,
-		node: true,
-	},
-	extends: [
-		'@ghadyani-eslint/core',
-	],
-}
+module.exports = require('./.eslintrc.js')
