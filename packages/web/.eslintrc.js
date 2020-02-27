@@ -18,6 +18,10 @@ module.exports = {
 			modules: true,
 		},
 	},
+	plugins: [
+		'compat',
+		'react',
+	],
 	rules: {
 		'compat/compat': 'warn',
 		'jsx-quotes': 'error',
@@ -34,10 +38,6 @@ module.exports = {
 		'react/react-in-jsx-scope': 'warn',
 		'react/self-closing-comp': 'error',
 	},
-	plugins: [
-		'compat',
-		'react',
-	],
 	settings: {
 		react: {
 			version: 'detect',
