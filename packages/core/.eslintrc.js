@@ -25,11 +25,11 @@ module.exports = {
 		],
 		'array-bracket-spacing': 'warn',
 		'array-element-newline': 'warn',
+		'arrow-body-style': 'error',
 		'arrow-parens': [
 			'warn',
 			'as-needed',
 		],
-		'arrow-body-style': 'error',
 		'comma-dangle': [
 			'warn',
 			{
