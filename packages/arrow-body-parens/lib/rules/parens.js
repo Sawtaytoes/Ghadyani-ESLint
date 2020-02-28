@@ -44,14 +44,14 @@ const rule = module.exports = {
     * @param {ASTNode} node The arrow function node.
     * @returns {void}
     */
-    function validate(node) {
+    function ArrowFunctionExpression(node) {
       const arrowBody = node.body;
 
       if (
         // ignore block statements
         rule.__ignoredBodyTypes.some(type => type === arrowBody.type) ||
         // ignore single line arrow functions
-        node.loc.start.line === node.loc.end.line
+        astUtils.isTokenOnSameLine(node, node)
       ) {
         return;
       }
@@ -63,12 +63,15 @@ const rule = module.exports = {
         sourceCode.getTokenBefore(tokenBefore);
 
       if (
-        node.body.type !== 'ArrowFunctionExpression' && (
-          !astUtils.isOpeningParenToken(tokenBefore) ||
-          !astUtils.isClosingParenToken(tokenAfter)
-        )
+        !astUtils.isOpeningParenToken(tokenBefore) ||
+        !astUtils.isClosingParenToken(tokenAfter)
       ) {
+        if (astUtils.isFunction(arrowBody)) {
+          return;
+        }
+
         const isClosingParenToken = astUtils.isClosingParenToken(tokenAfter);
+
         context.report({
           node,
           loc: tokenBefore.loc.start,
@@ -81,7 +84,7 @@ const rule = module.exports = {
             }
 
             if (!isClosingParenToken) {
-              fixes.push(fixer.insertTextAfter(node.body, '\n)'));
+              fixes.push(fixer.insertTextAfter(arrowBody, '\n)'));
             }
 
             return fixes;
@@ -92,26 +95,75 @@ const rule = module.exports = {
 
       const openingParens = tokenBefore;
       const closingParens = tokenAfter;
+
       if (
         astUtils.isArrowToken(arrowToken) &&
-        arrowToken.loc.start.line !== openingParens.loc.start.line
+        arrowToken.loc.start.line !== openingParens.loc.start.line ||
+        astUtils.isTokenOnSameLine(openingParens, arrowBody) ||
+        (arrowBody.loc.start.line - openingParens.loc.end.line) > 1 ||
+        astUtils.isTokenOnSameLine(arrowBody, closingParens) ||
+        (closingParens.loc.start.line - arrowBody.loc.end.line) > 1
       ) {
         context.report({
           node,
           loc: arrowToken.loc.start,
           message: rule.__errors.parensOnWrongLine,
           fix(fixer) {
-            return [
-              fixer.replaceTextRange(
-                [
-                  arrowToken.range[1],
-                  openingParens.range[1],
-                ],
-                ' (\n',
-              ),
+            const fixes = [];
 
-              fixer.replaceTextRange(closingParens.range, '\n)'),
-            ];
+            if (arrowToken.loc.start.line !== openingParens.loc.start.line) {
+              fixes.push(
+                fixer.replaceTextRange(
+                  [
+                    arrowToken.range[1],
+                    openingParens.range[1],
+                  ],
+                  ' (',
+                )
+              );
+            }
+
+            if (astUtils.isTokenOnSameLine(openingParens, arrowBody)) {
+              fixes.push(
+                fixer.replaceTextRange(
+                  [
+                    openingParens.range[1],
+                    arrowBody.range[0],
+                  ],
+                  '\n',
+                )
+              );
+            }
+
+            if ((arrowBody.loc.start.line - openingParens.loc.end.line) > 1) {
+              fixes.push(
+                fixer.removeRange(
+                  [
+                    openingParens.range[1],
+                    arrowBody.range[0],
+                  ],
+                )
+              );
+            }
+
+            if (astUtils.isTokenOnSameLine(arrowBody, closingParens)) {
+              fixes.push(
+                fixer.replaceTextRange(closingParens.range, '\n)')
+              );
+            }
+
+            if ((closingParens.loc.start.line - arrowBody.loc.end.line) > 1) {
+              fixes.push(
+                fixer.removeRange(
+                  [
+                    arrowBody.range[1],
+                    closingParens.range[0],
+                  ],
+                )
+              );
+            }
+
+            return fixes;
           },
         });
 
@@ -119,6 +171,128 @@ const rule = module.exports = {
       }
     }
 
-    return { 'ArrowFunctionExpression:exit': validate };
+    /**
+    * Determines whether a variable expression body needs parens
+    * @param {ASTNode} node The arrow function node.
+    * @returns {void}
+    */
+    function VariableDeclarator(node) {
+      const body = node.init;
+
+      if (!body) {
+        return;
+      }
+
+      if (
+        // ignore block statements
+        rule.__ignoredBodyTypes.some(type => type === body.type) ||
+        // ignore single line arrow functions
+        astUtils.isTokenOnSameLine(node, node)
+      ) {
+        return;
+      }
+
+      const tokenBefore = sourceCode.getTokenBefore(body);
+      const tokenAfter = sourceCode.getTokenAfter(body);
+
+      if (!astUtils.isParenthesised(sourceCode, body)) {
+        context.report({
+          node,
+          loc: tokenBefore.loc.start,
+          message: rule.__errors.noParensFound,
+          fix(fixer) {
+            const fixes = [];
+
+            fixes.push(fixer.insertTextAfter(tokenBefore, ' ('));
+            fixes.push(fixer.insertTextAfter(body, '\n)'));
+
+            return fixes;
+          },
+        });
+
+        return;
+      }
+
+      const openingParens = tokenBefore;
+      const closingParens = tokenAfter;
+
+      if (
+        !astUtils.isTokenOnSameLine(openingParens, node) ||
+        astUtils.isTokenOnSameLine(openingParens, body) ||
+        (body.loc.start.line - openingParens.loc.end.line) > 1 ||
+        astUtils.isTokenOnSameLine(body, closingParens) ||
+        (closingParens.loc.start.line - body.loc.end.line) > 1
+      ) {
+        context.report({
+          node,
+          loc: node.loc.start,
+          message: rule.__errors.parensOnWrongLine,
+          fix(fixer) {
+            const fixes = [];
+
+            if (!astUtils.isTokenOnSameLine(openingParens, node)) {
+              fixes.push(
+                fixer.replaceTextRange(
+                  [
+                    sourceCode.getTokenBefore(openingParens).range[1],
+                    openingParens.range[1],
+                  ],
+                  ' (',
+                )
+              );
+            }
+
+            if (astUtils.isTokenOnSameLine(openingParens, body)) {
+              fixes.push(
+                fixer.replaceTextRange(
+                  [
+                    sourceCode.getTokenBefore(openingParens).range[1],
+                    openingParens.range[1],
+                  ],
+                  ' (\n',
+                )
+              );
+            }
+
+            if ((body.loc.start.line - openingParens.loc.end.line) > 1) {
+              fixes.push(
+                fixer.removeRange(
+                  [
+                    openingParens.range[1],
+                    body.range[0],
+                  ],
+                )
+              );
+            }
+
+            if (astUtils.isTokenOnSameLine(body, closingParens)) {
+              fixes.push(
+                fixer.replaceTextRange(closingParens.range, '\n)')
+              );
+            }
+
+            if ((closingParens.loc.start.line - body.loc.end.line) > 1) {
+              fixes.push(
+                fixer.removeRange(
+                  [
+                    body.range[1],
+                    closingParens.range[0],
+                  ],
+                )
+              );
+            }
+
+            return fixes;
+          },
+        });
+
+        return;
+      }
+    }
+
+    return {
+      VariableDeclarator,
+      'ArrowFunctionExpression:exit': ArrowFunctionExpression,
+    };
   },
 };
