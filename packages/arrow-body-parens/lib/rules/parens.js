@@ -63,8 +63,10 @@ const rule = module.exports = {
         sourceCode.getTokenBefore(tokenBefore);
 
       if (
-        !astUtils.isOpeningParenToken(tokenBefore) ||
-        !astUtils.isClosingParenToken(tokenAfter)
+        node.body.type !== 'ArrowFunctionExpression' && (
+          !astUtils.isOpeningParenToken(tokenBefore) ||
+          !astUtils.isClosingParenToken(tokenAfter)
+        )
       ) {
         const isClosingParenToken = astUtils.isClosingParenToken(tokenAfter);
         context.report({
