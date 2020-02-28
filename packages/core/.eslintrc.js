@@ -12,10 +12,12 @@ module.exports = {
 		sourceType: 'module',
 	},
 	plugins: [
+		'@ghadyani-eslint/arrow-body-parens',
 		'import',
 		'sort-destructure-keys',
 	],
 	rules: {
+		'@ghadyani-eslint/arrow-body-parens/parens': 'warn',
 		'array-bracket-newline': [
 			'warn',
 			{
