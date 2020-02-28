@@ -157,7 +157,12 @@ module.exports = {
 		],
 		'operator-linebreak': [
 			'warn',
-			'before'
+			'before',
+			{
+				overrides: {
+					'=': 'after',
+				},
+			},
 		],
 		'padded-blocks': [
 			'warn',
