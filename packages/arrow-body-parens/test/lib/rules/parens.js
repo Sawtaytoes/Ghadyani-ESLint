@@ -8,8 +8,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import test from 'ava';
-import avaRuleTester from '../../../ava-rule-tester.js';
+const test = require('ava');
+const avaRuleTester = require('../../../ava-rule-tester.js');
 
 const { rules: { parens: rule } } = require('../../../lib');
 
