@@ -97,7 +97,6 @@ module.exports = {
 			'error',
 			'tab',
 			{
-				ignoredNodes: ['ConditionalExpression'],
 				MemberExpression: 0,
 				SwitchCase: 1,
 			},
