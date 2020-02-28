@@ -1,7 +1,7 @@
 const func = Function()
 const blah = ''
 
-const test =
+const test = (
 	func()
 	? (
 		blah
@@ -9,18 +9,18 @@ const test =
 		: 'kevin'
 	)
 	: 'jacob'
+)
 
 test
 
-// const includeStaged = ''
-// const collection = ''
+const includeStaged = ''
+const collection = ''
 
-// const items =
-// 	includeStaged
-// 	? [
-// 		...collection.resource.staged.create,
-// 		...collection.items,
-// 	]
-// 	: collection.items
+const items = (
+	includeStaged ? [
+		...collection.resource.staged.create,
+		...collection.items,
+	] : collection.items
+)
 
-// items
+items

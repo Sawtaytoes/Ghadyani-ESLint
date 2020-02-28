@@ -23,7 +23,7 @@ blah = [
 	2,
 ]
 
-console.log(blah)
+blah
 
 let func
 
@@ -59,7 +59,7 @@ func = ({
 	hello,
 	someone,
 }) =>
-	! someone
+	!someone
 	? someone
 	: hello
 
@@ -96,7 +96,7 @@ const test = (
 	: 'jacob'
 )
 
-console.log(test)
+test
 
 if (test == 2) {
 	blah
