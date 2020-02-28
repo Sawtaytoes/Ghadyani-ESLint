@@ -12,11 +12,31 @@ module.exports = {
 		sourceType: 'module',
 	},
 	plugins: [
+		'@getify/proper-ternary',
 		'@ghadyani-eslint/arrow-body-parens',
 		'import',
 		'sort-destructure-keys',
 	],
 	rules: {
+		'@getify/proper-ternary/nested': [
+			'warn',
+			{
+				depth: 1,
+				else: true,
+				test: true,
+				then: true,
+			},
+		],
+		'@getify/proper-ternary/parens': [
+			'warn',
+			{
+				call: false,
+				comparison: false,
+				logical: false,
+				object: false,
+				ternary: true,
+			},
+		],
 		'@ghadyani-eslint/arrow-body-parens/parens': 'warn',
 		'array-bracket-newline': [
 			'warn',
