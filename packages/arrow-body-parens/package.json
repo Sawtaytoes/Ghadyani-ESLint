@@ -9,9 +9,7 @@
     "test": "ava",
     "test:watch": "ava --watch",
     "format": "prettier 'lib/**/*.js' --trailing-comma all --single-quote --write",
-    "postformat": "npm run lint:fix",
-    "commit": "git-cz",
-    "commitmsg": "validate-commit-msg"
+    "postformat": "yarn lint:fix"
   },
   "keywords": [
     "eslint",
@@ -24,11 +22,11 @@
     "requireindex": "~1.1.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.5.0",
-    "eslint-plugin-import": "^2.7.0"
+    "ava": "^3.4.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1"
   },
   "license": "ISC",
-  "gitHead": "cb87c0eb000c6609c241d1004573be0e91c70e82"
+  "gitHead": "f361c76c38d1ef370b553e74ad3931f940717355"
 }
