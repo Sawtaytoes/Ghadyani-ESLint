@@ -75,7 +75,6 @@ module.exports = {
 			'error',
 			'tab',
 			{
-				flatTernaryExpressions: true,
 				ignoredNodes: ['ConditionalExpression'],
 				MemberExpression: 0,
 				SwitchCase: 1,
