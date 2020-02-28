@@ -9,5 +9,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Sawtaytoes/Ghadyani-ESLint.git"
+  },
+  "dependencies": {
+    "@ghadyani-eslint/eslint-plugin-arrow-body-parens": "^2.1.0"
   }
 }
