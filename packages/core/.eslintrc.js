@@ -229,13 +229,7 @@ module.exports = {
 		],
 		'space-in-parens': 'warn',
 		'space-infix-ops': 'warn',
-		'space-unary-ops': [
-			'warn',
-			{
-				'words': true,
-				'nonwords': true,
-			},
-		],
+		'space-unary-ops': 'warn',
 		'spaced-comment': 'warn',
 		'strict': [
 			'warn',
