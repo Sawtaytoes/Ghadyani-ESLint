@@ -61,6 +61,7 @@ const rule = module.exports = {
       const arrowToken = astUtils.isArrowToken(tokenBefore) ?
         tokenBefore :
         sourceCode.getTokenBefore(tokenBefore);
+
       if (
         !astUtils.isOpeningParenToken(tokenBefore) ||
         !astUtils.isClosingParenToken(tokenAfter)
@@ -78,7 +79,7 @@ const rule = module.exports = {
             }
 
             if (!isClosingParenToken) {
-              fixes.push(fixer.insertTextBefore(tokenAfter, '\n)'));
+              fixes.push(fixer.insertTextAfter(node.body, '\n)'));
             }
 
             return fixes;
