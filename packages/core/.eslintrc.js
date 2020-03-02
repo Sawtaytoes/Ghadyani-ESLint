@@ -68,7 +68,7 @@ module.exports = {
 		'function-call-argument-newline': 'warn',
 		'function-paren-newline': [
 			'warn',
-			{ minItems: 2 },
+			'multiline-arguments',
 		],
 		'key-spacing': 'warn',
 		'keyword-spacing': 'warn',
