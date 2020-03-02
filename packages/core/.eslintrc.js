@@ -56,10 +56,10 @@ module.exports = {
 			'warn',
 			{
 				arrays: 'always-multiline',
-				objects: 'always-multiline',
-				imports: 'always-multiline',
 				exports: 'always-multiline',
 				functions: 'only-multiline',
+				imports: 'always-multiline',
+				objects: 'always-multiline',
 			},
 		],
 		'comma-style': 'warn',
