@@ -1,6 +1,6 @@
 {
   "name": "@ghadyani-eslint/eslint-config-core",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Base ESLint config for Ghadyani Framework packages.",
   "license": "MITNFA",
   "publishConfig": {
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@getify/eslint-plugin-proper-ternary": "^3.0.1",
-    "@ghadyani-eslint/eslint-plugin-arrow-body-parens": "^2.2.0",
+    "@ghadyani-eslint/eslint-plugin-arrow-body-parens": "^2.2.1",
     "eslint-plugin-sort-destructure-keys": "^1.3.3"
   }
 }
