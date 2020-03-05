@@ -34,6 +34,7 @@ const rule = module.exports = {
   __ignoredBodyTypes: [
     'ArrayExpression',
     'BlockStatement',
+    'ObjectExpression',
   ],
 
   create(context) {
@@ -291,8 +292,8 @@ const rule = module.exports = {
     }
 
     return {
-      VariableDeclarator,
       'ArrowFunctionExpression:exit': ArrowFunctionExpression,
+      'VariableDeclarator:exit': VariableDeclarator,
     };
   },
 };
