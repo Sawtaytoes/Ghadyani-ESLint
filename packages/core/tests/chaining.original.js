@@ -5,11 +5,11 @@ observable$.subscribe()
 observable$.subscribe().unsubscribe()
 
 observable$.subscribe(() => ({
-	complete: console.log,
+	complete: Function.prototype,
+	error: Function.prototype,
 	next: (t) => {
-		console.log(t)
+		Function.prototype(t)
 	},
-	error: console.error,
 }))
 
 observable$.subscribe()
@@ -28,6 +28,11 @@ observable$
 Object.keys(observable$)
 
 let d3
+
+d3.select("body").selectAll("p").data([4, 8, 15, 16, 23, 42 ])
+
+d3.select("body")
+.selectAll("p").data([4, 8, 15, 16, 23, 42 ])
 
 d3.select("body")
 .selectAll("p")

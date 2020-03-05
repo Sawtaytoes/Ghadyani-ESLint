@@ -54,6 +54,30 @@ d3
 	42,
 ])
 
+d3
+.select('body')
+.selectAll('p')
+.data([
+	4,
+	8,
+	15,
+	16,
+	23,
+	42,
+])
+
+d3
+.select('body')
+.selectAll('p')
+.data([
+	4,
+	8,
+	15,
+	16,
+	23,
+	42,
+])
+
 let array = []
 
 array
