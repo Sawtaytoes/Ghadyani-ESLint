@@ -1,0 +1,32 @@
+{
+  "name": "@ghadyani-eslint/eslint-plugin-eslint-overrides",
+  "version": "0.0.0",
+  "description": "Rules to override ESLint, so I don't have to wait on PRs to get approved in the official repo.",
+  "scripts": {
+    "lint": "eslint --ext=js,jsx .",
+    "lint:fix": "eslint . --ext=js,jsx --fix",
+    "pretest": "npm run lint",
+    "test": "ava",
+    "test:watch": "ava --watch",
+    "format": "prettier 'lib/**/*.js' --trailing-comma all --single-quote --write",
+    "postformat": "yarn lint:fix"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Kevin Ghadyani",
+  "main": "lib/index.js",
+  "dependencies": {
+    "functional-red-black-tree": "^1.0.1",
+    "lodash": "^4.17.15",
+    "requireindex": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0"
+  },
+  "license": "ISC",
+  "gitHead": "f361c76c38d1ef370b553e74ad3931f940717355"
+}
