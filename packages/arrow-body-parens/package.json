@@ -16,7 +16,7 @@
     "eslintplugin",
     "eslint-plugin"
   ],
-  "author": "Berkeley Martinez",
+  "author": "Kevin Ghadyani",
   "main": "lib/index.js",
   "dependencies": {
     "requireindex": "~1.1.0"
