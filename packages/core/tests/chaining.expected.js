@@ -26,6 +26,18 @@ observable$
 .subscribe()
 .unsubscribe()
 
+observable$
+.subscribe()
+[0]
+['unsubscribe']()
+['length']
+['ball']()
+
+observable$
+.subscribe()
+[0]
+.unsubscribe()
+
 Object.keys(observable$)
 
 let d3
@@ -80,6 +92,17 @@ d3
 
 let array = []
 
+array[0]
+
+array
+[0]
+[1]
+
+array
+[0]
+[1]
+.length
+
 array
 .map(({
 	bar,
@@ -120,4 +143,24 @@ array
 	foo,
 }))
 .filter(Boolean)
+.length
+
+array
+.forEach(() => ({
+	value: 'value',
+}))
+
+void [
+	1,
+	2,
+	3,
+]
+.forEach(Function.prototype)
+
+void [
+	1,
+	2,
+	3,
+]
+.forEach(Function.prototype)
 .length
