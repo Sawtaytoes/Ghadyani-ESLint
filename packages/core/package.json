@@ -11,7 +11,6 @@
     "url": "https://github.com/Sawtaytoes/Ghadyani-ESLint.git"
   },
   "dependencies": {
-    "@getify/eslint-plugin-proper-ternary": "^3.0.1",
     "@ghadyani-eslint/eslint-plugin-arrow-body-parens": "^2.2.2-alpha.0",
     "@ghadyani-eslint/eslint-plugin-eslint-overrides": "^2.2.2-alpha.0",
     "@ghadyani-eslint/eslint-plugin-rules": "^2.2.2-alpha.0",

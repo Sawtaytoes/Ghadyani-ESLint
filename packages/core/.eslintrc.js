@@ -12,13 +12,14 @@ module.exports = {
 		sourceType: 'module',
 	},
 	plugins: [
-		'@getify/proper-ternary',
 		'@ghadyani-eslint/arrow-body-parens',
+		'@ghadyani-eslint/eslint-overrides',
+		'@ghadyani-eslint/rules',
 		'import',
 		'sort-destructure-keys',
 	],
 	rules: {
-		'@getify/proper-ternary/nested': [
+		'@ghadyani-eslint/rules/proper-ternary-nesting': [
 			'warn',
 			{
 				depth: 1,
@@ -27,7 +28,7 @@ module.exports = {
 				then: true,
 			},
 		],
-		'@getify/proper-ternary/parens': [
+		'@ghadyani-eslint/rules/proper-ternary-parens': [
 			'warn',
 			{
 				call: false,
@@ -38,6 +39,24 @@ module.exports = {
 			},
 		],
 		'@ghadyani-eslint/arrow-body-parens/parens': 'warn',
+		'@ghadyani-eslint/eslint-overrides/indent': [
+			'error',
+			'tab',
+			{
+				ConditionalExpression: 0,
+				MemberExpression: 0,
+				SwitchCase: 1,
+			},
+		],
+		'@ghadyani-eslint/eslint-overrides/multiline-ternary': 'warn',
+		'@ghadyani-eslint/eslint-overrides/newline-per-chained-call': [
+			'warn',
+			{
+				depthCalculationStyle: "all",
+				includeProperties: true,
+				multilineBreakStyle: "statement",
+			},
+		],
 		'array-bracket-newline': [
 			'warn',
 			{
@@ -93,21 +112,8 @@ module.exports = {
 		// 		],
 		// 	},
 		// ],
-		'indent': [
-			'error',
-			'tab',
-			{
-				MemberExpression: 0,
-				SwitchCase: 1,
-			},
-		],
 		'lines-between-class-members': 'warn',
-		'multiline-ternary': 'warn',
 		'new-parens': 'warn',
-		'newline-per-chained-call': [
-			'warn',
-			{ ignoreChainWithDepth: 1 },
-		],
 		'no-console': 'off',
 		'no-lonely-if': 'warn',
 		'no-multi-spaces': [
