@@ -5,7 +5,7 @@
 
 "use strict";
 
-const astUtils = require("eslint/lib/rules/utils/ast-utils");
+const eslintUtils = require("eslint-utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -50,8 +50,8 @@ module.exports = {
 
         return {
             ConditionalExpression(node) {
-                const areTestAndConsequentOnSameLine = astUtils.isTokenOnSameLine(node.test, node.consequent);
-                const areConsequentAndAlternateOnSameLine = astUtils.isTokenOnSameLine(node.consequent, node.alternate);
+                const areTestAndConsequentOnSameLine = eslintUtils.isTokenOnSameLine(node.test, node.consequent);
+                const areConsequentAndAlternateOnSameLine = eslintUtils.isTokenOnSameLine(node.consequent, node.alternate);
 
                 if (!multiline) {
                     if (!areTestAndConsequentOnSameLine) {
@@ -59,11 +59,11 @@ module.exports = {
                             node: node.test,
                             messageId: "unexpectedTestCons",
                             fix: fixer => {
-                                const testToken = astUtils.isParenthesised(sourceCode, node.test)
+                                const testToken = eslintUtils.isParenthesised(sourceCode, node.test)
                                     ? sourceCode.getTokenAfter(node.test)
                                     : node.test;
 
-                                const consequentToken = astUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenBefore(node.consequent)
                                     : node.consequent;
 
@@ -85,11 +85,11 @@ module.exports = {
                             node: node.consequent,
                             messageId: "unexpectedConsAlt",
                             fix: fixer => {
-                                const consequentToken = astUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenAfter(node.consequent)
                                     : node.consequent;
 
-                                const alternateToken = astUtils.isParenthesised(sourceCode, node.alternate)
+                                const alternateToken = eslintUtils.isParenthesised(sourceCode, node.alternate)
                                     ? sourceCode.getTokenBefore(node.alternate)
                                     : node.alternate;
 
@@ -115,11 +115,11 @@ module.exports = {
                             node: node.test,
                             messageId: "expectedTestCons",
                             fix: fixer => {
-                                const testToken = astUtils.isParenthesised(sourceCode, node.test)
+                                const testToken = eslintUtils.isParenthesised(sourceCode, node.test)
                                     ? sourceCode.getTokenAfter(node.test)
                                     : node.test;
 
-                                const consequentToken = astUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenBefore(node.consequent)
                                     : node.consequent;
 
@@ -141,11 +141,11 @@ module.exports = {
                             node: node.consequent,
                             messageId: "expectedConsAlt",
                             fix: fixer => {
-                                const consequentToken = astUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenAfter(node.consequent)
                                     : node.consequent;
 
-                                const alternateToken = astUtils.isParenthesised(sourceCode, node.alternate)
+                                const alternateToken = eslintUtils.isParenthesised(sourceCode, node.alternate)
                                     ? sourceCode.getTokenBefore(node.alternate)
                                     : node.alternate;
 

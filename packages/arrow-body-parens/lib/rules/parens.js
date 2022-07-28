@@ -7,7 +7,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const eslintUtils = require("eslint-utils")
+const eslintUtils = require('eslint-utils');
 
 //------------------------------------------------------------------------------
 // Rule Definition

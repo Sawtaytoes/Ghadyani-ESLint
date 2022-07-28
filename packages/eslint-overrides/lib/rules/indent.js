@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------------
 
 const lodash = require("lodash");
-const astUtils = require("eslint/lib/rules/utils/ast-utils");
+const eslintUtils = require("eslint-utils");
 const createTree = require("functional-red-black-tree");
 
 //------------------------------------------------------------------------------
@@ -808,7 +808,7 @@ module.exports = {
          */
         function countTrailingLinebreaks(string) {
             const trailingWhitespace = string.match(/\s*$/u)[0];
-            const linebreakMatches = trailingWhitespace.match(astUtils.createGlobalLinebreakMatcher());
+            const linebreakMatches = trailingWhitespace.match(eslintUtils.createGlobalLinebreakMatcher());
 
             return linebreakMatches === null ? 0 : linebreakMatches.length;
         }
@@ -831,7 +831,7 @@ module.exports = {
             function getFirstToken(element) {
                 let token = sourceCode.getTokenBefore(element);
 
-                while (astUtils.isOpeningParenToken(token) && token !== startToken) {
+                while (eslintUtils.isOpeningParenToken(token) && token !== startToken) {
                     token = sourceCode.getTokenBefore(token);
                 }
                 return sourceCode.getTokenAfter(token);
@@ -894,14 +894,14 @@ module.exports = {
          */
         function addBlocklessNodeIndent(node) {
             if (node.type !== "BlockStatement") {
-                const lastParentToken = sourceCode.getTokenBefore(node, astUtils.isNotOpeningParenToken);
+                const lastParentToken = sourceCode.getTokenBefore(node, eslintUtils.isNotOpeningParenToken);
 
                 let firstBodyToken = sourceCode.getFirstToken(node);
                 let lastBodyToken = sourceCode.getLastToken(node);
 
                 while (
-                    astUtils.isOpeningParenToken(sourceCode.getTokenBefore(firstBodyToken)) &&
-                    astUtils.isClosingParenToken(sourceCode.getTokenAfter(lastBodyToken))
+                    eslintUtils.isOpeningParenToken(sourceCode.getTokenBefore(firstBodyToken)) &&
+                    eslintUtils.isClosingParenToken(sourceCode.getTokenAfter(lastBodyToken))
                 ) {
                     firstBodyToken = sourceCode.getTokenBefore(firstBodyToken);
                     lastBodyToken = sourceCode.getTokenAfter(lastBodyToken);
@@ -917,7 +917,7 @@ module.exports = {
                  */
                 const lastToken = sourceCode.getLastToken(node);
 
-                if (node.type !== "EmptyStatement" && astUtils.isSemicolonToken(lastToken)) {
+                if (node.type !== "EmptyStatement" && eslintUtils.isSemicolonToken(lastToken)) {
                     offsets.setDesiredOffset(lastToken, lastParentToken, 0);
                 }
             }
@@ -932,7 +932,7 @@ module.exports = {
             let openingParen;
 
             if (node.arguments.length) {
-                openingParen = sourceCode.getFirstTokenBetween(node.callee, node.arguments[0], astUtils.isOpeningParenToken);
+                openingParen = sourceCode.getFirstTokenBetween(node.callee, node.arguments[0], eslintUtils.isOpeningParenToken);
             } else {
                 openingParen = sourceCode.getLastToken(node, 1);
             }
@@ -961,9 +961,9 @@ module.exports = {
             tokens.forEach(nextToken => {
 
                 // Accumulate a list of parenthesis pairs
-                if (astUtils.isOpeningParenToken(nextToken)) {
+                if (eslintUtils.isOpeningParenToken(nextToken)) {
                     parenStack.push(nextToken);
-                } else if (astUtils.isClosingParenToken(nextToken)) {
+                } else if (eslintUtils.isClosingParenToken(nextToken)) {
                     parenPairs.unshift({ left: parenStack.pop(), right: nextToken });
                 }
             });
@@ -1056,7 +1056,7 @@ module.exports = {
         const baseOffsetListeners = {
             "ArrayExpression, ArrayPattern"(node) {
                 const openingBracket = sourceCode.getFirstToken(node);
-                const closingBracket = sourceCode.getTokenAfter(lodash.findLast(node.elements) || openingBracket, astUtils.isClosingBracketToken);
+                const closingBracket = sourceCode.getTokenAfter(lodash.findLast(node.elements) || openingBracket, eslintUtils.isClosingBracketToken);
 
                 addElementListIndent(node.elements, openingBracket, closingBracket, options.ArrayExpression);
             },
@@ -1065,7 +1065,7 @@ module.exports = {
                 const openingCurly = sourceCode.getFirstToken(node);
                 const closingCurly = sourceCode.getTokenAfter(
                     node.properties.length ? node.properties[node.properties.length - 1] : openingCurly,
-                    astUtils.isClosingBraceToken
+                    eslintUtils.isClosingBraceToken
                 );
 
                 addElementListIndent(node.properties, openingCurly, closingCurly, options.ObjectExpression);
@@ -1074,9 +1074,9 @@ module.exports = {
             ArrowFunctionExpression(node) {
                 const firstToken = sourceCode.getFirstToken(node);
 
-                if (astUtils.isOpeningParenToken(firstToken)) {
+                if (eslintUtils.isOpeningParenToken(firstToken)) {
                     const openingParen = firstToken;
-                    const closingParen = sourceCode.getTokenBefore(node.body, astUtils.isClosingParenToken);
+                    const closingParen = sourceCode.getTokenBefore(node.body, eslintUtils.isClosingParenToken);
 
                     parameterParens.add(openingParen);
                     parameterParens.add(closingParen);
@@ -1126,7 +1126,7 @@ module.exports = {
                  * For blocks that aren't lone statements, ensure that the opening curly brace
                  * is aligned with the parent.
                  */
-                if (!astUtils.STATEMENT_LIST_PARENTS.has(node.parent.type)) {
+                if (!eslintUtils.STATEMENT_LIST_PARENTS.has(node.parent.type)) {
                     offsets.setDesiredOffset(sourceCode.getFirstToken(node), sourceCode.getFirstToken(node.parent), 0);
                 }
 
@@ -1137,7 +1137,7 @@ module.exports = {
 
             "ClassDeclaration[superClass], ClassExpression[superClass]"(node) {
                 const classToken = sourceCode.getFirstToken(node);
-                const extendsToken = sourceCode.getTokenBefore(node.superClass, astUtils.isNotOpeningParenToken);
+                const extendsToken = sourceCode.getTokenBefore(node.superClass, eslintUtils.isNotOpeningParenToken);
 
                 offsets.setDesiredOffsets([extendsToken.range[0], node.body.range[0]], classToken, 1);
             },
@@ -1151,7 +1151,7 @@ module.exports = {
                 //     foo < 0 ? baz :
                 //     /*else*/ qiz ;
                 if (!options.flatTernaryExpressions ||
-                    !astUtils.isTokenOnSameLine(node.test, node.consequent) ||
+                    !eslintUtils.isTokenOnSameLine(node.test, node.consequent) ||
                     isOnFirstLineOfStatement(firstToken, node)
                 ) {
                     const questionMarkToken = sourceCode.getFirstTokenBetween(node.test, node.consequent, token => token.type === "Punctuator" && token.value === "?");
@@ -1201,7 +1201,7 @@ module.exports = {
 
             ExportNamedDeclaration(node) {
                 if (node.declaration === null) {
-                    const closingCurly = sourceCode.getLastToken(node, astUtils.isClosingBraceToken);
+                    const closingCurly = sourceCode.getLastToken(node, eslintUtils.isClosingBraceToken);
 
                     // Indent the specifiers in `export {foo, bar, baz}`
                     addElementListIndent(node.specifiers, sourceCode.getFirstToken(node, { skip: 1 }), closingCurly, 1);
@@ -1247,8 +1247,8 @@ module.exports = {
 
             ImportDeclaration(node) {
                 if (node.specifiers.some(specifier => specifier.type === "ImportSpecifier")) {
-                    const openingCurly = sourceCode.getFirstToken(node, astUtils.isOpeningBraceToken);
-                    const closingCurly = sourceCode.getLastToken(node, astUtils.isClosingBraceToken);
+                    const openingCurly = sourceCode.getFirstToken(node, eslintUtils.isOpeningBraceToken);
+                    const closingCurly = sourceCode.getLastToken(node, eslintUtils.isClosingBraceToken);
 
                     addElementListIndent(node.specifiers.filter(specifier => specifier.type === "ImportSpecifier"), openingCurly, closingCurly, options.ImportDeclaration);
                 }
@@ -1277,10 +1277,10 @@ module.exports = {
 
             "MemberExpression, JSXMemberExpression, MetaProperty"(node) {
                 const object = node.type === "MetaProperty" ? node.meta : node.object;
-                const firstNonObjectToken = sourceCode.getFirstTokenBetween(object, node.property, astUtils.isNotClosingParenToken);
+                const firstNonObjectToken = sourceCode.getFirstTokenBetween(object, node.property, eslintUtils.isNotClosingParenToken);
                 const secondNonObjectToken = sourceCode.getTokenAfter(firstNonObjectToken);
 
-                const objectParenCount = sourceCode.getTokensBetween(object, node.property, { filter: astUtils.isClosingParenToken }).length;
+                const objectParenCount = sourceCode.getTokensBetween(object, node.property, { filter: eslintUtils.isClosingParenToken }).length;
                 const firstObjectToken = objectParenCount
                     ? sourceCode.getTokenBefore(object, { skip: objectParenCount - 1 })
                     : sourceCode.getFirstToken(object);
@@ -1333,22 +1333,22 @@ module.exports = {
 
                 // Only indent the arguments if the NewExpression has parens (e.g. `new Foo(bar)` or `new Foo()`, but not `new Foo`
                 if (node.arguments.length > 0 ||
-                        astUtils.isClosingParenToken(sourceCode.getLastToken(node)) &&
-                        astUtils.isOpeningParenToken(sourceCode.getLastToken(node, 1))) {
+                        eslintUtils.isClosingParenToken(sourceCode.getLastToken(node)) &&
+                        eslintUtils.isOpeningParenToken(sourceCode.getLastToken(node, 1))) {
                     addFunctionCallIndent(node);
                 }
             },
 
             Property(node) {
                 if (!node.shorthand && !node.method && node.kind === "init") {
-                    const colon = sourceCode.getFirstTokenBetween(node.key, node.value, astUtils.isColonToken);
+                    const colon = sourceCode.getFirstTokenBetween(node.key, node.value, eslintUtils.isColonToken);
 
                     offsets.ignoreToken(sourceCode.getTokenAfter(colon));
                 }
             },
 
             SwitchStatement(node) {
-                const openingCurly = sourceCode.getTokenAfter(node.discriminant, astUtils.isOpeningBraceToken);
+                const openingCurly = sourceCode.getTokenAfter(node.discriminant, eslintUtils.isOpeningBraceToken);
                 const closingCurly = sourceCode.getLastToken(node);
 
                 offsets.setDesiredOffsets([openingCurly.range[1], closingCurly.range[0]], openingCurly, options.SwitchCase);
@@ -1357,7 +1357,7 @@ module.exports = {
                     sourceCode.getTokensBetween(
                         node.cases[node.cases.length - 1],
                         closingCurly,
-                        { includeComments: true, filter: astUtils.isCommentToken }
+                        { includeComments: true, filter: eslintUtils.isCommentToken }
                     ).forEach(token => offsets.ignoreToken(token));
                 }
             },
@@ -1432,14 +1432,14 @@ module.exports = {
                     offsets.setDesiredOffsets(node.range, firstToken, variableIndent);
                 }
 
-                if (astUtils.isSemicolonToken(lastToken)) {
+                if (eslintUtils.isSemicolonToken(lastToken)) {
                     offsets.ignoreToken(lastToken);
                 }
             },
 
             VariableDeclarator(node) {
                 if (node.init) {
-                    const equalOperator = sourceCode.getTokenBefore(node.init, astUtils.isNotOpeningParenToken);
+                    const equalOperator = sourceCode.getTokenBefore(node.init, eslintUtils.isNotOpeningParenToken);
                     const tokenAfterOperator = sourceCode.getTokenAfter(equalOperator);
 
                     offsets.ignoreToken(equalOperator);
@@ -1500,7 +1500,7 @@ module.exports = {
                 const firstToken = sourceCode.getFirstToken(node);
                 const slashToken = sourceCode.getLastToken(node, { skip: 1 });
                 const closingToken = sourceCode.getLastToken(node);
-                const tokenToMatch = astUtils.isTokenOnSameLine(slashToken, closingToken) ? slashToken : closingToken;
+                const tokenToMatch = eslintUtils.isTokenOnSameLine(slashToken, closingToken) ? slashToken : closingToken;
 
                 offsets.setDesiredOffsets(node.range, firstToken, 1);
                 offsets.matchOffsetOf(firstToken, tokenToMatch);
@@ -1652,7 +1652,7 @@ module.exports = {
                             return;
                         }
 
-                        if (astUtils.isCommentToken(firstTokenOfLine)) {
+                        if (eslintUtils.isCommentToken(firstTokenOfLine)) {
                             const tokenBefore = precedingTokens.get(firstTokenOfLine);
                             const tokenAfter = tokenBefore ? sourceCode.getTokenAfter(tokenBefore) : sourceCode.ast.tokens[0];
                             const mayAlignWithBefore = tokenBefore && !hasBlankLinesBetween(tokenBefore, firstTokenOfLine);
@@ -1665,7 +1665,7 @@ module.exports = {
                              * // comment
                              * ;(async () => {})()
                              */
-                            if (tokenAfter && astUtils.isSemicolonToken(tokenAfter) && !astUtils.isTokenOnSameLine(firstTokenOfLine, tokenAfter)) {
+                            if (tokenAfter && eslintUtils.isSemicolonToken(tokenAfter) && !eslintUtils.isTokenOnSameLine(firstTokenOfLine, tokenAfter)) {
                                 offsets.setDesiredOffset(firstTokenOfLine, tokenAfter, 0);
                             }
 
