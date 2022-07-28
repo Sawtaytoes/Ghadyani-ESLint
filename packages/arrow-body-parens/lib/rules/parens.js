@@ -7,7 +7,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const astUtils = require('eslint/lib/rules/utils/ast-utils.js');
+const eslintUtils = require("eslint-utils")
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -52,26 +52,26 @@ const rule = module.exports = {
         // ignore block statements
         rule.__ignoredBodyTypes.some(type => type === arrowBody.type) ||
         // ignore single line arrow functions
-        astUtils.isTokenOnSameLine(node, node)
+        eslintUtils.isTokenOnSameLine(node, node)
       ) {
         return;
       }
 
       const tokenBefore = sourceCode.getTokenBefore(arrowBody);
       const tokenAfter = sourceCode.getTokenAfter(arrowBody);
-      const arrowToken = astUtils.isArrowToken(tokenBefore) ?
+      const arrowToken = eslintUtils.isArrowToken(tokenBefore) ?
         tokenBefore :
         sourceCode.getTokenBefore(tokenBefore);
 
       if (
-        !astUtils.isOpeningParenToken(tokenBefore) ||
-        !astUtils.isClosingParenToken(tokenAfter)
+        !eslintUtils.isOpeningParenToken(tokenBefore) ||
+        !eslintUtils.isClosingParenToken(tokenAfter)
       ) {
-        if (astUtils.isFunction(arrowBody)) {
+        if (eslintUtils.isFunction(arrowBody)) {
           return;
         }
 
-        const isClosingParenToken = astUtils.isClosingParenToken(tokenAfter);
+        const isClosingParenToken = eslintUtils.isClosingParenToken(tokenAfter);
 
         context.report({
           node,
@@ -80,7 +80,7 @@ const rule = module.exports = {
           fix(fixer) {
             const fixes = [];
 
-            if (!astUtils.isOpeningParenToken(tokenBefore)) {
+            if (!eslintUtils.isOpeningParenToken(tokenBefore)) {
               fixes.push(fixer.insertTextAfter(tokenBefore, ' ('));
             }
 
@@ -98,11 +98,11 @@ const rule = module.exports = {
       const closingParens = tokenAfter;
 
       if (
-        astUtils.isArrowToken(arrowToken) &&
+        eslintUtils.isArrowToken(arrowToken) &&
         arrowToken.loc.start.line !== openingParens.loc.start.line ||
-        astUtils.isTokenOnSameLine(openingParens, arrowBody) ||
+        eslintUtils.isTokenOnSameLine(openingParens, arrowBody) ||
         (arrowBody.loc.start.line - openingParens.loc.end.line) > 1 ||
-        astUtils.isTokenOnSameLine(arrowBody, closingParens) ||
+        eslintUtils.isTokenOnSameLine(arrowBody, closingParens) ||
         (closingParens.loc.start.line - arrowBody.loc.end.line) > 1
       ) {
         context.report({
@@ -124,7 +124,7 @@ const rule = module.exports = {
               );
             }
 
-            if (astUtils.isTokenOnSameLine(openingParens, arrowBody)) {
+            if (eslintUtils.isTokenOnSameLine(openingParens, arrowBody)) {
               fixes.push(
                 fixer.replaceTextRange(
                   [
@@ -147,7 +147,7 @@ const rule = module.exports = {
               );
             }
 
-            if (astUtils.isTokenOnSameLine(arrowBody, closingParens)) {
+            if (eslintUtils.isTokenOnSameLine(arrowBody, closingParens)) {
               fixes.push(
                 fixer.replaceTextRange(closingParens.range, '\n)')
               );
@@ -188,7 +188,7 @@ const rule = module.exports = {
         // ignore block statements
         rule.__ignoredBodyTypes.some(type => type === body.type) ||
         // ignore single line arrow functions
-        astUtils.isTokenOnSameLine(node, node)
+        eslintUtils.isTokenOnSameLine(node, node)
       ) {
         return;
       }
@@ -196,7 +196,7 @@ const rule = module.exports = {
       const tokenBefore = sourceCode.getTokenBefore(body);
       const tokenAfter = sourceCode.getTokenAfter(body);
 
-      if (!astUtils.isParenthesised(sourceCode, body)) {
+      if (!eslintUtils.isParenthesised(sourceCode, body)) {
         context.report({
           node,
           loc: tokenBefore.loc.start,
@@ -218,10 +218,10 @@ const rule = module.exports = {
       const closingParens = tokenAfter;
 
       if (
-        !astUtils.isTokenOnSameLine(openingParens, node) ||
-        astUtils.isTokenOnSameLine(openingParens, body) ||
+        !eslintUtils.isTokenOnSameLine(openingParens, node) ||
+        eslintUtils.isTokenOnSameLine(openingParens, body) ||
         (body.loc.start.line - openingParens.loc.end.line) > 1 ||
-        astUtils.isTokenOnSameLine(body, closingParens) ||
+        eslintUtils.isTokenOnSameLine(body, closingParens) ||
         (closingParens.loc.start.line - body.loc.end.line) > 1
       ) {
         context.report({
@@ -231,7 +231,7 @@ const rule = module.exports = {
           fix(fixer) {
             const fixes = [];
 
-            if (!astUtils.isTokenOnSameLine(openingParens, node)) {
+            if (!eslintUtils.isTokenOnSameLine(openingParens, node)) {
               fixes.push(
                 fixer.replaceTextRange(
                   [
@@ -243,7 +243,7 @@ const rule = module.exports = {
               );
             }
 
-            if (astUtils.isTokenOnSameLine(openingParens, body)) {
+            if (eslintUtils.isTokenOnSameLine(openingParens, body)) {
               fixes.push(
                 fixer.replaceTextRange(
                   [
@@ -266,7 +266,7 @@ const rule = module.exports = {
               );
             }
 
-            if (astUtils.isTokenOnSameLine(body, closingParens)) {
+            if (eslintUtils.isTokenOnSameLine(body, closingParens)) {
               fixes.push(
                 fixer.replaceTextRange(closingParens.range, '\n)')
               );

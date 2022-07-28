@@ -21,6 +21,9 @@
   "exports": "./lib/index.js",
   "main": "lib/index.js",
   "dependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "eslint-utils": "^3.0.0",
     "requireindex": "^1.2.0"
   },
   "devDependencies": {
