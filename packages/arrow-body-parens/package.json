@@ -1,6 +1,6 @@
 {
   "name": "@ghadyani-eslint/eslint-plugin-arrow-body-parens",
-  "version": "2.2.2-alpha.0",
+  "version": "2.2.3-alpha.0",
   "description": "Rule to require parenthesis in arrow function body expressions.",
   "scripts": {
     "lint": "eslint --ext=js,jsx .",
