@@ -91,7 +91,15 @@ module.exports = {
 		],
 		'key-spacing': 'warn',
 		'keyword-spacing': 'warn',
-		'import/no-unresolved': 'warn',
+		'import/no-unresolved': [
+			'warn',
+			{
+				caseSensitive: false,
+				ignore: [
+					'\\$',
+				],
+			},
+		],
 		// 'import/order': [
 		// 	'warn',
 		// 	{

@@ -11,6 +11,7 @@
     "format": "prettier 'lib/**/*.js' --trailing-comma all --single-quote --write",
     "postformat": "yarn lint:fix"
   },
+  "packageManager": "yarn@3.2.2",
   "keywords": [
     "eslint",
     "eslintplugin",
@@ -19,13 +20,13 @@
   "author": "Kevin Ghadyani",
   "main": "lib/index.js",
   "dependencies": {
-    "requireindex": "~1.1.0"
+    "requireindex": "^1.2.0"
   },
   "devDependencies": {
-    "ava": "^3.4.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.1"
+    "@babel/eslint-parser": "^7.18.9",
+    "ava": "^4.3.1",
+    "eslint": "^8.20.0",
+    "eslint-plugin-import": "^2.26.0"
   },
   "license": "ISC",
   "gitHead": "d84e34e19d1d68d7d8914b1386a518cbdc491494"

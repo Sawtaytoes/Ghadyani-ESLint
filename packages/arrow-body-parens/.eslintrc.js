@@ -4,7 +4,7 @@ module.exports = {
     "mocha": true,
     "node": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "plugins": [
     "import"
   ],
