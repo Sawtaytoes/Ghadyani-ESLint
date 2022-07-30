@@ -52,8 +52,8 @@ module.exports = {
 
         return {
             ConditionalExpression(node) {
-                const areTestAndConsequentOnSameLine = eslintUtils.isTokenOnSameLine(node.test, node.consequent);
-                const areConsequentAndAlternateOnSameLine = eslintUtils.isTokenOnSameLine(node.consequent, node.alternate);
+                const areTestAndConsequentOnSameLine = ASTUtils.isTokenOnSameLine(node.test, node.consequent);
+                const areConsequentAndAlternateOnSameLine = ASTUtils.isTokenOnSameLine(node.consequent, node.alternate);
 
                 if (!multiline) {
                     if (!areTestAndConsequentOnSameLine) {
@@ -61,11 +61,11 @@ module.exports = {
                             node: node.test,
                             messageId: "unexpectedTestCons",
                             fix: fixer => {
-                                const testToken = eslintUtils.isParenthesised(sourceCode, node.test)
+                                const testToken = ASTUtils.isParenthesised(sourceCode, node.test)
                                     ? sourceCode.getTokenAfter(node.test)
                                     : node.test;
 
-                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = ASTUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenBefore(node.consequent)
                                     : node.consequent;
 
@@ -87,11 +87,11 @@ module.exports = {
                             node: node.consequent,
                             messageId: "unexpectedConsAlt",
                             fix: fixer => {
-                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = ASTUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenAfter(node.consequent)
                                     : node.consequent;
 
-                                const alternateToken = eslintUtils.isParenthesised(sourceCode, node.alternate)
+                                const alternateToken = ASTUtils.isParenthesised(sourceCode, node.alternate)
                                     ? sourceCode.getTokenBefore(node.alternate)
                                     : node.alternate;
 
@@ -117,11 +117,11 @@ module.exports = {
                             node: node.test,
                             messageId: "expectedTestCons",
                             fix: fixer => {
-                                const testToken = eslintUtils.isParenthesised(sourceCode, node.test)
+                                const testToken = ASTUtils.isParenthesised(sourceCode, node.test)
                                     ? sourceCode.getTokenAfter(node.test)
                                     : node.test;
 
-                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = ASTUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenBefore(node.consequent)
                                     : node.consequent;
 
@@ -143,11 +143,11 @@ module.exports = {
                             node: node.consequent,
                             messageId: "expectedConsAlt",
                             fix: fixer => {
-                                const consequentToken = eslintUtils.isParenthesised(sourceCode, node.consequent)
+                                const consequentToken = ASTUtils.isParenthesised(sourceCode, node.consequent)
                                     ? sourceCode.getTokenAfter(node.consequent)
                                     : node.consequent;
 
-                                const alternateToken = eslintUtils.isParenthesised(sourceCode, node.alternate)
+                                const alternateToken = ASTUtils.isParenthesised(sourceCode, node.alternate)
                                     ? sourceCode.getTokenBefore(node.alternate)
                                     : node.alternate;
 

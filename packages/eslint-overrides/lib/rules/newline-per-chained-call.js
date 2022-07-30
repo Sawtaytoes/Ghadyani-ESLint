@@ -108,7 +108,7 @@ module.exports = {
          */
         function getPropertyText(node) {
             const prefix = getPrefix(node);
-            const lines = sourceCode.getText(node.property).split(eslintUtils.LINEBREAK_MATCHER);
+            const lines = sourceCode.getText(node.property).split(ASTUtils.LINEBREAK_MATCHER);
             const suffix = node.computed && lines.length === 1 ? "]" : "";
 
             return prefix + lines[0] + suffix;
@@ -121,7 +121,7 @@ module.exports = {
          */
         function hasObjectAndPropertyOnSameLine({ object, property }) {
             return (
-                eslintUtils.isTokenOnSameLine(
+                ASTUtils.isTokenOnSameLine(
                     object,
                     property
                 )
@@ -134,7 +134,7 @@ module.exports = {
          * @returns {bool} Is the ASTNode spanning multiple lines?
          */
         function isSpanningMultipleLines(node) {
-            return !eslintUtils.isTokenOnSameLine(node, node);
+            return !ASTUtils.isTokenOnSameLine(node, node);
         }
 
         /**
@@ -258,7 +258,7 @@ module.exports = {
                                 const firstTokenAfterObject = (
                                     sourceCode.getTokenAfter(
                                         memberExpression.object,
-                                        eslintUtils.isNotClosingParenToken
+                                        ASTUtils.isNotClosingParenToken
                                     )
                                 );
 
@@ -307,7 +307,7 @@ module.exports = {
                         const firstTokenAfterObject = (
                             sourceCode.getTokenAfter(
                                 node.object,
-                                eslintUtils.isNotClosingParenToken
+                                ASTUtils.isNotClosingParenToken
                             )
                         );
 
