@@ -1,6 +1,6 @@
 {
   "name": "@ghadyani-eslint/eslint-plugin-rules",
-  "version": "2.2.3",
+  "version": "2.2.9",
   "description": "Custom rules for @ghadyani-eslint/core.",
   "scripts": {
     "lint": "eslint --ext=js,jsx .",
