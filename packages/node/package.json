@@ -1,11 +1,11 @@
 {
   "name": "@ghadyani-eslint/eslint-config-node",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "description": "ESLint config for Ghadyani Framework packages designed for Node.js projects.",
   "license": "MITNFA",
   "packageManager": "yarn@3.2.2",
   "dependencies": {
-    "@ghadyani-eslint/eslint-config-core": "^2.2.9"
+    "@ghadyani-eslint/eslint-config-core": "^2.2.10"
   },
   "publishConfig": {
     "access": "public"
