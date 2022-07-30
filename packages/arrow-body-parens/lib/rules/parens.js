@@ -198,7 +198,7 @@ const rule = module.exports = {
       const tokenBefore = sourceCode.getTokenBefore(body);
       const tokenAfter = sourceCode.getTokenAfter(body);
 
-      if (!ASTUtils.isParenthesised(sourceCode, body)) {
+      if (!ASTUtils.isParenthesized(node, sourceCode, body)) {
         context.report({
           node,
           loc: tokenBefore.loc.start,

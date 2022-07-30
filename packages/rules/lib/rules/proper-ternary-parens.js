@@ -1,5 +1,19 @@
 "use strict";
 
+function parensSurrounding(sourceCode,node) {
+    var before = sourceCode.getTokenBefore(node);
+    var after = sourceCode.getTokenAfter(node);
+
+    return (
+        before &&
+        before.type == "Punctuator" &&
+        before.value == "(" &&
+        after &&
+        after.type == "Punctuator" &&
+        after.value == ")"
+    );
+}
+
 module.exports = {
     meta: {
         type: "problem",

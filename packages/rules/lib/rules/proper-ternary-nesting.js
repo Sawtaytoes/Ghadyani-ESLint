@@ -1,5 +1,44 @@
 "use strict";
 
+function getOutermostTernary(nodes) {
+    var ternary;
+    for (let node of [...nodes,].reverse()) {
+        if (node.type == "ConditionalExpression") {
+            ternary = node;
+        }
+        else if (
+            node.type.includes("Statement") ||
+            node.type.includes("Declarat") ||
+            node.type.includes("Assignment")
+        ) {
+            return ternary;
+        }
+    }
+}
+
+function identifyParentClause(ternary,nodes) {
+    var prevNode = ternary;
+    for (let node of [...nodes,].reverse()) {
+        if (node.type == "ConditionalExpression") {
+            if (node.test === prevNode) return "test";
+            else if (node.consequent === prevNode) return "then";
+            else {
+                // NOTE: these contortions/comments here are because of an
+                // annoying bug with Istanbul's code coverage:
+                // https://github.com/gotwarlost/istanbul/issues/781
+                //
+                /* eslint-disable no-lonely-if */
+                /* istanbul ignore else */
+                if (node.alternate === prevNode) {
+                    return "else";
+                }
+                /* eslint-enable no-lonely-if */
+            }
+        }
+        prevNode = node;
+    }
+}
+
 module.exports = {
     meta: {
         type: "problem",
