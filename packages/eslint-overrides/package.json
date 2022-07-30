@@ -1,6 +1,6 @@
 {
   "name": "@ghadyani-eslint/eslint-plugin-eslint-overrides",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "description": "Rules to override ESLint, so I don't have to wait on PRs to get approved in the official repo.",
   "scripts": {
     "lint": "eslint --ext=js,jsx .",
