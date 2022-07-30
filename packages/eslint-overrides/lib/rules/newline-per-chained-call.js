@@ -6,7 +6,7 @@
 
 "use strict";
 
-const astUtils = require("eslint/lib/rules/utils/ast-utils");
+const eslintUtils = require("eslint-utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -106,7 +106,7 @@ module.exports = {
          */
         function getPropertyText(node) {
             const prefix = getPrefix(node);
-            const lines = sourceCode.getText(node.property).split(astUtils.LINEBREAK_MATCHER);
+            const lines = sourceCode.getText(node.property).split(eslintUtils.LINEBREAK_MATCHER);
             const suffix = node.computed && lines.length === 1 ? "]" : "";
 
             return prefix + lines[0] + suffix;
@@ -119,7 +119,7 @@ module.exports = {
          */
         function hasObjectAndPropertyOnSameLine({ object, property }) {
             return (
-                astUtils.isTokenOnSameLine(
+                eslintUtils.isTokenOnSameLine(
                     object,
                     property
                 )
@@ -132,7 +132,7 @@ module.exports = {
          * @returns {bool} Is the ASTNode spanning multiple lines?
          */
         function isSpanningMultipleLines(node) {
-            return !astUtils.isTokenOnSameLine(node, node);
+            return !eslintUtils.isTokenOnSameLine(node, node);
         }
 
         /**
@@ -256,7 +256,7 @@ module.exports = {
                                 const firstTokenAfterObject = (
                                     sourceCode.getTokenAfter(
                                         memberExpression.object,
-                                        astUtils.isNotClosingParenToken
+                                        eslintUtils.isNotClosingParenToken
                                     )
                                 );
 
@@ -305,7 +305,7 @@ module.exports = {
                         const firstTokenAfterObject = (
                             sourceCode.getTokenAfter(
                                 node.object,
-                                astUtils.isNotClosingParenToken
+                                eslintUtils.isNotClosingParenToken
                             )
                         );
 
