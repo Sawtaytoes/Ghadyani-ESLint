@@ -4,7 +4,7 @@ module.exports = {
 		'plugin:react-hooks/recommended',
 		'@ghadyani-eslint/web',
 	],
-	parser: '@babel/eslint-parser',
+	// parser: '@babel/eslint-parser',
 	parserOptions: {
 		'ecmaFeatures': {
 			jsx: true,

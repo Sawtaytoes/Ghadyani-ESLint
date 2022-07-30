@@ -20,7 +20,7 @@
   "author": "Kevin Ghadyani",
   "main": "lib/index.js",
   "dependencies": {
-    "eslint-utils": "^3.0.0",
+    "@typescript-eslint/utils": "^5.31.0",
     "functional-red-black-tree": "^1.0.1",
     "lodash": "^4.17.21",
     "requireindex": "^1.2.0"

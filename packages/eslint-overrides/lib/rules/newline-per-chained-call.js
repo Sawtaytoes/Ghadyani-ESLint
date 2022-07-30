@@ -6,7 +6,7 @@
 
 "use strict";
 
-const eslintUtils = require("eslint-utils");
+const eslintUtils = require("@typescript-eslint/utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition

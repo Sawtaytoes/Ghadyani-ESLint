@@ -10,7 +10,7 @@ module.exports = {
 		navigator: 'readonly',
 		window: 'readonly',
 	},
-	parser: '@babel/eslint-parser',
+	// parser: '@babel/eslint-parser',
 	plugins: [
 		'compat',
 	],

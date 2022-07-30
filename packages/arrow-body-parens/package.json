@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
-    "eslint-utils": "^3.0.0",
+    "@typescript-eslint/utils": "^5.31.0",
     "requireindex": "^1.2.0"
   },
   "devDependencies": {
