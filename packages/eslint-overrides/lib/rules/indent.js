@@ -13,7 +13,9 @@
 //------------------------------------------------------------------------------
 
 const lodash = require("lodash");
-const eslintUtils = require("@typescript-eslint/utils");
+const {
+  ASTUtils,
+} = require("@typescript-eslint/utils");
 const createTree = require("functional-red-black-tree");
 
 //------------------------------------------------------------------------------

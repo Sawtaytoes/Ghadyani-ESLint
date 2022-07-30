@@ -7,7 +7,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const eslintUtils = require("@typescript-eslint/utils");
+const {
+  ASTUtils,
+} = require("@typescript-eslint/utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition
