@@ -1,11 +1,11 @@
 {
   "name": "@ghadyani-eslint/eslint-config-web",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "ESLint config for Ghadyani Framework packages designed for web projects.",
   "license": "MITNFA",
   "packageManager": "yarn@3.2.2",
   "dependencies": {
-    "@ghadyani-eslint/eslint-config-core": "^2.2.4"
+    "@ghadyani-eslint/eslint-config-core": "^2.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
